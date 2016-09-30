@@ -1,5 +1,9 @@
 package control;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -16,6 +20,37 @@ import javafx.stage.Stage;
 import model.*;
 
 public class SongLibController {
+	
+
+
+	    @FXML
+	    private Button addSong;
+
+	    @FXML
+	    private Button editSong;
+
+	    @FXML
+	    private Button deleteSong;
+
+	    @FXML
+	    private TextField enterSongName;
+
+	    @FXML
+	    private TextField enterSongArtist;
+
+	    @FXML
+	    private TextField enterSongAlbum;
+
+	    @FXML
+	    private TextField enterSongYear;
+
+	    @FXML
+	    private Button confirmTextField;
+
+	    @FXML
+	    private Button cancelTextField;
+
+	
 	@FXML
 	ListView<String> listView;
 	
