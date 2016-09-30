@@ -20,6 +20,10 @@ public class SongLib extends Application {
 		primaryStage.setMinWidth(650);
 		primaryStage.setMinHeight(560);
 		primaryStage.setScene(scene);
+		
+		SongLibController slc = loader.getController();
+		slc.start(primaryStage);
+		
 		primaryStage.show();
 	}
 
