@@ -3,6 +3,7 @@ package application;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import model.SongList;
 import view.SongLibController;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -28,6 +29,14 @@ public class SongLib extends Application {
 	}
 
 	public static void main(String[] args) {		
+//		SongList sl = new SongList();
+//		sl.addSong("Zest hits", "by danny", "greats", 2001);
+//		sl.addSong("Best hits", "by marcus", "greats", 2001);
+//		sl.addSong("Dest hits", "by sesh", "greats", 2001);
+//		sl.addSong("Zest hits", "by manny", "greats", 2001);
+//		SongLibController slc = new SongLibController();
+//		slc.sl = sl;
+//		slc.saveSongList();
 		launch(args);
 	}
 

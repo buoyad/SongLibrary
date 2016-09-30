@@ -11,7 +11,7 @@ public class SongList implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2130430648064284754L;
+	private static final long serialVersionUID = -7811596000577847026L;
 	public HashMap<String, Song> list;
 
 	/**
@@ -93,6 +93,29 @@ public class SongList implements Serializable {
 		});
 
 		return songTitles.toArray(new String[songTitles.size()]);
+	}
+	
+	public Song[] getSongs() {
+		ArrayList<Song> songs = new ArrayList<Song>();
+		
+		list.forEach(new BiConsumer<String, Song>() {
+			public void accept(String key, Song s) {
+				String n = s.name;
+
+				for (int i = 0; i <= songs.size(); i++) {
+					if (i == songs.size()) {
+						songs.add(i, s);
+						break;
+					}
+					else if (songs.get(i).name.compareToIgnoreCase(n) >= 0) {
+						songs.add(i, s);
+						break;
+					}
+				}				
+			}
+		});
+		
+		return songs.toArray(new Song[songs.size()]);
 	}
 
 	public class DuplicateSongException extends IllegalArgumentException {

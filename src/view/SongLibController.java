@@ -56,7 +56,7 @@ public class SongLibController {
 
 
 	@FXML
-	ListView<String> listView;
+	private ListView<String> listView;
 
 	public SongList sl;
 	public Song ss; // Selected song
@@ -75,7 +75,11 @@ public class SongLibController {
 		listView.getSelectionModel()
 		.selectedItemProperty()
 		.addListener((obs, oldVal, newVal) -> {
-			this.songInfoField.setText("selection changed from " + oldVal + " to " + newVal);
+			
+			Song selected = sl.getSongs()[listView.getSelectionModel().getSelectedIndex()];
+			
+			//this.songInfoField.setText("selection changed from " + oldVal + " to " + newVal
+			//		+ " at index " + sl.getSongs()[listView.getSelectionModel().getSelectedIndex()].key);
 		});
 	}
 
