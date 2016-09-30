@@ -18,7 +18,7 @@ public class SongLib extends Application {
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		primaryStage.setMinWidth(650);
-		primaryStage.setMinHeight(560);
+		primaryStage.setMinHeight(580);
 		primaryStage.setScene(scene);
 		
 		SongLibController slc = loader.getController();

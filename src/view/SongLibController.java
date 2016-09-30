@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -20,45 +21,48 @@ import javafx.stage.Stage;
 import model.*;
 
 public class SongLibController {
-	
 
 
-	    @FXML
-	    private Button addSong;
 
-	    @FXML
-	    private Button editSong;
+	@FXML
+	private Button addSong;
 
-	    @FXML
-	    private Button deleteSong;
+	@FXML
+	private Button editSong;
 
-	    @FXML
-	    private TextField enterSongName;
+	@FXML
+	private Button deleteSong;
 
-	    @FXML
-	    private TextField enterSongArtist;
+	@FXML
+	private TextField enterSongName;
 
-	    @FXML
-	    private TextField enterSongAlbum;
+	@FXML
+	private TextField enterSongArtist;
 
-	    @FXML
-	    private TextField enterSongYear;
+	@FXML
+	private TextField enterSongAlbum;
 
-	    @FXML
-	    private Button confirmTextField;
+	@FXML
+	private TextField enterSongYear;
 
-	    @FXML
-	    private Button cancelTextField;
+	@FXML
+	private TextArea songInfoField;
 
-	
+	@FXML
+	private Button confirmTextField;
+
+	@FXML
+	private Button cancelTextField;
+
+
 	@FXML
 	ListView<String> listView;
-	
+
 	public SongList sl;
 	public Song ss; // Selected song
-	
+
 	private final String saveFileName = "songlist.ser";
-	
+
 	private ObservableList<String> obsList;
 
 	public void start(Stage mainstage) {
@@ -66,9 +70,15 @@ public class SongLibController {
 			this.sl = new SongList();
 		} // Song list is loaded
 		obsList = FXCollections.observableArrayList(sl.getSongTitles());
-		listView.setItems(obsList);		
+		listView.setItems(obsList);	
+
+		listView.getSelectionModel()
+		.selectedItemProperty()
+		.addListener((obs, oldVal, newVal) -> {
+			this.songInfoField.setText("selection changed from " + oldVal + " to " + newVal);
+		});
 	}
-	
+
 	public void saveSongList() {
 		try {
 			FileOutputStream outTest = new FileOutputStream(saveFileName);
@@ -83,7 +93,7 @@ public class SongLibController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean loadSongList() {
 		File f = new File(saveFileName);
 		if (!f.exists()) return false;
