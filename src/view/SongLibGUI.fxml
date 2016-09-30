@@ -100,7 +100,7 @@
                                           <Insets left="81.0" />
                                        </GridPane.margin>
                                     </Button>
-                                    <Button fx:id="cancelTextField" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                    <Button fx:id="cancelTextField" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="4" prefHeight="31.0" prefWidth="69.0">
                                        <GridPane.margin>
                                           <Insets left="150.0" />
                                        </GridPane.margin>

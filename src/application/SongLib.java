@@ -17,6 +17,8 @@ public class SongLib extends Application {
 		AnchorPane root = (AnchorPane)loader.load();
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		primaryStage.setMinWidth(650);
+		primaryStage.setMinHeight(560);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
