@@ -1,12 +1,17 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 
-public class SongList {
+public class SongList implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2130430648064284754L;
 	public HashMap<String, Song> list;
 
 	/**
@@ -91,6 +96,11 @@ public class SongList {
 	}
 
 	public class DuplicateSongException extends IllegalArgumentException {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -7366773116572300319L;
+
 		public DuplicateSongException(String e) {
 			super(e);
 		}

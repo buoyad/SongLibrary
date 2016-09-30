@@ -1,7 +1,14 @@
 package model;
 
-public class Song {
+import java.io.Serializable;
+
+public class Song implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1706299580039023335L;
+
 	public String key; // For hashmap?
 	
 	public String name;
