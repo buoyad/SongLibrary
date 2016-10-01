@@ -50,13 +50,7 @@ public class SongList implements Serializable {
 	 * 			the old key should be supplied here (for removal)
 	 * 			(this is probably bad)
 	 */
-	public void updateSong(Song s, Optional<String> oldKey) throws DuplicateSongException {
-		if (oldKey.isPresent()) {
-			list.remove(oldKey);
-			if (list.containsKey(s.key)) {
-				throw new DuplicateSongException("A song with that name already exists.");
-			}
-		} 
+	public void updateSong(Song s) throws DuplicateSongException {
 		list.remove(s.key);
 		list.put(s.key, s);
 	}
@@ -73,26 +67,33 @@ public class SongList implements Serializable {
 	}
 
 	public String[] getSongTitles() {
-		ArrayList<String> songTitles = new ArrayList<String>();
-
-		list.forEach(new BiConsumer<String, Song>() {
-			public void accept(String key, Song s) {
-				String n = s.name;
-
-				for (int i = 0; i <= songTitles.size(); i++) {
-					if (i == songTitles.size()) {
-						songTitles.add(i, n);
-						break;
-					}
-					else if (songTitles.get(i).compareToIgnoreCase(n) >= 0) {
-						songTitles.add(i, n);
-						break;
-					}
-				}				
-			}
-		});
-
-		return songTitles.toArray(new String[songTitles.size()]);
+		Song[] songs = getSongs();
+		String[] songTitles = new String[songs.length];
+		for (int i = 0; i < songs.length; i++) {
+			songTitles[i] = songs[i].name;
+		}
+		return songTitles;
+//		ArrayList<String> songTitles = new ArrayList<String>();
+//
+//		list.forEach(new BiConsumer<String, Song>() {
+//			public void accept(String key, Song s) {
+//				String n = s.name;
+//				String k = s.key;
+//
+//				for (int i = 0; i <= songTitles.size(); i++) {
+//					if (i == songTitles.size()) {
+//						songTitles.add(i, n);
+//						break;
+//					}
+//					else if (songTitles.get(i).compareToIgnoreCase(n) >= 0) {
+//						songTitles.add(i, n);
+//						break;
+//					}
+//				}				
+//			}
+//		});
+//
+//		return songTitles.toArray(new String[songTitles.size()]);
 	}
 	
 	public Song[] getSongs() {
@@ -101,13 +102,14 @@ public class SongList implements Serializable {
 		list.forEach(new BiConsumer<String, Song>() {
 			public void accept(String key, Song s) {
 				String n = s.name;
+				String k = s.key;
 
 				for (int i = 0; i <= songs.size(); i++) {
 					if (i == songs.size()) {
 						songs.add(i, s);
 						break;
 					}
-					else if (songs.get(i).name.compareToIgnoreCase(n) >= 0) {
+					else if (songs.get(i).key.compareToIgnoreCase(k) >= 0) {
 						songs.add(i, s);
 						break;
 					}
