@@ -1,3 +1,7 @@
+/**
+ * @author Daniel Ayoub, Marcus Lomi
+ */
+
 package model;
 
 import java.io.Serializable;
@@ -15,7 +19,7 @@ public class SongList implements Serializable {
 	public HashMap<String, Song> list;
 
 	/**
-	 * Makes a new songliiiist
+	 * Makes a new songlist
 	 */
 	public SongList() {
 		this.list = new HashMap<String, Song>();
@@ -66,6 +70,9 @@ public class SongList implements Serializable {
 		list.remove(key);
 	}
 
+	/**
+	 * @return String array of the songs in the list
+	 */
 	public String[] getSongTitles() {
 		Song[] songs = getSongs();
 		String[] songTitles = new String[songs.length];

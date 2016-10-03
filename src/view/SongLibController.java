@@ -1,3 +1,7 @@
+/**
+ * @author Daniel Ayoub, Marcus Lomi
+ */
+
 package view;
 
 import javafx.fxml.FXML;
@@ -7,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
-
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,7 +19,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -28,8 +30,6 @@ import javafx.stage.Stage;
 import model.*;
 
 public class SongLibController {
-
-
 
 	@FXML
 	private Button addSong;
@@ -78,22 +78,28 @@ public class SongLibController {
 			this.sl = new SongList();
 		} // Song list is loaded
 		updateListData();
+		
+		
 
 		// Disable things we don't need right now
 		setButtonsDisabled(true);
 		setFieldsDisabled(true);
 
 		listView.setOnMouseClicked((e) -> {
-			updateList();			
+			updateList();		
+			updateListData();
+			
 		});
 
 		deleteSong.setOnAction((e) -> {
 			int i = listView.getSelectionModel().getSelectedIndex();
 			Song target = sl.getSongs()[i];
 			sl.removeSong(target.key);
+			listView.getSelectionModel().clearSelection();
 			updateList();
 			updateListData();
 			songInfoField.setText("");
+			
 			setButtonsDisabled(true);
 			setFieldsDisabled(true); 
 		});		
@@ -121,7 +127,7 @@ public class SongLibController {
 			fcnId = 2;
 		});
 
-		// Make it so year field only takes numbers
+		
 		enterSongYear.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -188,7 +194,10 @@ public class SongLibController {
 			saveSongList();
 		});
 	}
-
+	
+	/**
+	 * Updates the list to correctly display the songs that are currently in it.
+	 */
 	public void updateList() {
 		int i = listView.getSelectionModel().getSelectedIndex();
 		if (i >= 0) {
@@ -207,19 +216,29 @@ public class SongLibController {
 			}
 			songInfoField.setText(sb.toString());
 			setButtonsDisabled(false);
+			
 		}
 	}
+	
 	
 	public void updateListData() {
 		obsList = FXCollections.observableArrayList(sl.getSongTitles());
 		listView.setItems(obsList);	
 	}
 
+	/**
+	 * Disables the delete and edit buttons
+	 * @param d
+	 */
 	public void setButtonsDisabled(boolean d) {
 		deleteSong.setDisable(d);
 		editSong.setDisable(d);
 	}
 
+	/**
+	 * Disables the text fields to enter the song name, artist, year and album.
+	 * @param d
+	 */
 	public void setFieldsDisabled(boolean d) {
 		if (d) {
 			enterSongName.setText("Required");
@@ -235,7 +254,10 @@ public class SongLibController {
 		confirmTextField.setDisable(d);
 		cancelTextField.setDisable(d);
 	}
-
+	
+	/**
+	 * Saves the song list to an external file.
+	 */
 	public void saveSongList() {
 		try {
 			FileOutputStream outTest = new FileOutputStream(saveFileName);
@@ -251,6 +273,10 @@ public class SongLibController {
 		}
 	}
 
+	/**
+	 * Loads the song list from an external file
+	 * @return boolean true or false depending on whether or not the file was found
+	 */
 	public boolean loadSongList() {
 		File f = new File(saveFileName);
 		if (!f.exists()) return false;

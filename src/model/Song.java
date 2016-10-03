@@ -1,3 +1,7 @@
+/**
+ * @author Daniel Ayoub, Marcus Lomi
+ */
+
 package model;
 
 import java.io.Serializable;

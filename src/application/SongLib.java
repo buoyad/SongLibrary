@@ -1,3 +1,7 @@
+/**
+ * @author Daniel Ayoub, Marcus Lomi
+ */
+
 package application;
 
 import javafx.application.Application;
@@ -14,7 +18,8 @@ public class SongLib extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/view/SongLibGUI.fxml"));
+		loader.setLocation(
+				getClass().getResource("/view/SongLibGUI.fxml"));
 		AnchorPane root = (AnchorPane)loader.load();
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -29,14 +34,6 @@ public class SongLib extends Application {
 	}
 
 	public static void main(String[] args) {		
-//		SongList sl = new SongList();
-//		sl.addSong("Zest hits", "by danny", "greats", 2001);
-//		sl.addSong("Best hits", "by marcus", "greats", 2001);
-//		sl.addSong("Dest hits", "by sesh", "greats", 2001);
-//		sl.addSong("Zest hits", "by manny", "greats", 2001);
-//		SongLibController slc = new SongLibController();
-//		slc.sl = sl;
-//		slc.saveSongList();
 		launch(args);
 	}
 
