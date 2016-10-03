@@ -79,6 +79,8 @@ public class SongLibController {
 		} // Song list is loaded
 		updateListData();
 		
+		listView.getSelectionModel().selectFirst();
+		updateList();
 		
 
 		// Disable things we don't need right now
@@ -87,8 +89,6 @@ public class SongLibController {
 
 		listView.setOnMouseClicked((e) -> {
 			updateList();		
-			updateListData();
-			
 		});
 
 		deleteSong.setOnAction((e) -> {
@@ -98,10 +98,12 @@ public class SongLibController {
 			listView.getSelectionModel().clearSelection();
 			updateList();
 			updateListData();
-			songInfoField.setText("");
-			
+			if(listView.getSelectionModel().isEmpty()){
+				songInfoField.setText("");
+			}	
 			setButtonsDisabled(true);
 			setFieldsDisabled(true); 
+			
 		});		
 
 		editSong.setOnAction((e) -> {
