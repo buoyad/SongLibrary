@@ -103,6 +103,11 @@ public class SongLibController {
 			}	
 			setButtonsDisabled(true);
 			setFieldsDisabled(true); 
+			listView.getSelectionModel().select(i);
+			if(listView.getSelectionModel().isEmpty()){
+				listView.getSelectionModel().selectLast();
+			}
+			updateList();
 			
 		});		
 
